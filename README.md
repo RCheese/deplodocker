@@ -63,3 +63,5 @@ Also you can use `stdin` as input and choose destination file trough arguments
 ```shell script
 >>> cat poetry.lock | deplodocker poetry.lock -d requirements.json -f poetry -o json
 ```
+
+<a href="https://www.buymeacoffee.com/RussianCheese" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/arial-violet.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
