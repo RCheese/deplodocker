@@ -1,5 +1,7 @@
 # DEPLODOCKER
 ___________
+[![PyPI version](https://badge.fury.io/py/deplodocker.svg)](https://badge.fury.io/py/deplodocker)
+___________
 
 ### Why?
 
