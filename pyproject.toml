@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "deplodocker"
-version = "0.1.4"
+version = "0.2.0"
 description = "Locker of dependency files for deploy in docker and etc."
 authors = ["RCheese <ruslan.v.samoylov@gmail.com>"]
 license = "MIT"

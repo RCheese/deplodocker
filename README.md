@@ -7,7 +7,7 @@ ___________
 
 Poetry and others python dependency managers has no cozy interface to communicate with requirements.
 Some of them has no methods for export extras or extras without main requirements.
-Some of them has no possibilities to use anither format excluding `requirements.txt`.
+Some of them has no possibilities to use another format excluding `requirements.txt`.
 This project aims to fix this problem.  
 
 
@@ -20,10 +20,12 @@ Usage: deplodocker [OPTIONS] [SRC]
   Select lock file to work with or use stdin as source
 
 Options:
-  -d, --dst FILENAME        result file
-  -i, --input-format TEXT   format of input lock file
-  -o, --output-format TEXT  format of output file
+  -d, --dst FILENAME        result file [default=stdout]
+  -i, --input-format TEXT   format of input lock file [default=poetry]
+  -o, --output-format TEXT  format of output file [default=requirements.txt]
+  -s, --section TEXT        Section of lock file (multiple) [default=<all>]
   --help                    Show this message and exit.
+
 ```
 
 ```shell script
@@ -42,18 +44,10 @@ orjson==3.4.3
 ```
 
 ```shell script
->>> deplodocker poetry.lock -i poetry -o yaml
-    dev:
-      appdirs: 1.4.4
-      atomicwrites: 1.4.0
-      attrs: 20.3.0
-      black: 20.8b1
-      ...
+>>> deplodocker poetry.lock -i poetry -o yaml -s main
     main:
       click: 7.1.2
       toml: 0.10.2
-    speedups:
-      orjson: 3.4.3
 ```
 
 ```shell script
