@@ -8,7 +8,32 @@ ___________
 Poetry and others python dependency managers has no cozy interface to communicate with requirements.
 Some of them has no methods for export extras or extras without main requirements.
 Some of them has no possibilities to use another format excluding `requirements.txt`.
-This project aims to fix this problem.  
+This project aims to fix this problem.
+
+
+```dockerfile
+FROM python:3.8-alpine AS base
+RUN apk update
+
+FROM base AS locker
+ADD pyproject.toml .
+RUN poetry lock
+RUN deplodocker poetry.lock -i poetry -o requirements.txt -d requirements.txt \
+    && deplodocker poetry.lock -i poetry -o requirements.txt -d requirements-main.txt -s main \
+    && deplodocker poetry.lock -i poetry -o requirements.txt -d requirements-dev.txt -s dev \
+    && deplodocker poetry.lock -i poetry -o requirements.txt -d requirements-raw.txt -s raw \
+    && deplodocker poetry.lock -i poetry -o requirements.txt -d requirements-binary.txt -s binary \
+    && deplodocker poetry.lock -i poetry -o requirements.txt -d requirements-debug.txt -s debug
+
+FROM base AS builder_raw
+COPY --from=locker /requirements-raw.txt .
+### ...
+
+FROM base AS builder_binary
+COPY --from=locker /requirements-binary.txt .
+### ...
+
+```  
 
 
 ### Basic usage
